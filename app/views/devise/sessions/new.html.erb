@@ -1,8 +1,8 @@
-<h2>Log in</h2>
+<h2 class="Sign-up">Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs mx-auto">
-  <div class="col-lg-6 col-md-8 col-12 mx-auto">
+    <div class="col-lg-6 col-md-8 col-12 mx-auto">
     <%= f.input :email,
                 required: false,
                 autofocus: true,
