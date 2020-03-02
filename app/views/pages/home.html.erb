@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Art It</h1>
+<p>Find your <strong>Art</strong> collections</p>
+
+<% @collections.each do |collection| %>
+  <%= collection %>
+<% end %>
