@@ -1,22 +1,30 @@
-<h1>My Dashboard</h1>
 
-<h2>My Collection</h2>
+<p>My Collection</p>
 
 <% @collections.each do |my_collection| %>
-<% my_collection %>
+<p><%= my_collection.title %></p>
+<p><%= my_collection.description %></p>
+<p><%= my_collection.price %></p>
+<% my_collection.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <% end %>
 
 <%= link_to 'Add', new_collection_path %>
 
 
-<h2>Made Bookings</h2>
+<p>Made Bookings</p>
 
 <% @made_bookings.each do |bookings| %>
-<%= bookings %>
+<p><%= bookings.collection.title %></p>
+<p><%= bookings.start_date %></p>
+<p><%= bookings.end_date %></p>
 <% end %>
 
-<h2>Received Bookings</h2>
+<p>Received Bookings</p>
 
 <% @received_bookings.each do |bookings| %>
-<%= bookings %>
+<p><%= bookings.collection.title %></p>
+<p><%= bookings.start_date %></p>
+<p><%= bookings.end_date %></p>
 <% end %>
