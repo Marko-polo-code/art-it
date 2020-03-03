@@ -1,1 +1,20 @@
-<h1>this is dashboard</h1>
+<h1>My Dashboard</h1>
+
+<h2>My Collection</h2>
+
+<% @collections.each do |my_collection| %>
+<% my_collection %>
+<% end %>
+
+
+<h2>Made Bookings</h2>
+
+<% @made_bookings.each do |bookings| %>
+<%= bookings %>
+<% end %>
+
+<h2>Received Bookings</h2>
+
+<% @received_bookings.each do |bookings| %>
+<%= bookings %>
+<% end %>
