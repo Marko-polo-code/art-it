@@ -3,7 +3,13 @@
 <h2>My Collection</h2>
 
 <% @collections.each do |my_collection| %>
-<% my_collection %>
+<%= my_collection.title %>
+<%= my_collection.description %>
+<% my_collection.photos.each do |photo| %>
+<%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+<%= link_to 'delete', collection_path(my_collection), method: :delete %>
+<%= link_to 'edit', edit_collection_path(my_collection) %>
 <% end %>
 
 <%= link_to 'Add', new_collection_path %>
@@ -12,11 +18,15 @@
 <h2>Made Bookings</h2>
 
 <% @made_bookings.each do |bookings| %>
-<%= bookings %>
+<%= bookings.collection.user %>
+<%= bookings.start_date %>
+<%= bookings.end_date %>
 <% end %>
 
 <h2>Received Bookings</h2>
 
 <% @received_bookings.each do |bookings| %>
-<%= bookings %>
+<%= bookings.collection.title %>
+<%= bookings.start_date %>
+<%= bookings.end_date %>
 <% end %>
