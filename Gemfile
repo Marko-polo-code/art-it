@@ -11,7 +11,6 @@ gem 'devise'
 gem 'faker'
 gem 'cloudinary'
 
-
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'sassc-rails'
