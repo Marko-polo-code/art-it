@@ -1,6 +1,9 @@
 <h1>This is the show page</h1>
 
 <%= @collection.title %>
+<% @collection.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <%= @collection.description %>
 <%= @collection.price %>
 <h1>This is the show page</h1>

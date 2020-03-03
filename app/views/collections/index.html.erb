@@ -2,13 +2,14 @@
 
 <div class="cards">
   <% @collections.each do |collection| %>
-
-    
-    <div class="card-category">
-
+    <% if collection.photos.attached? %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
         <%= link_to collection.title, collection_path(collection)%>
-    </div>
-
-
+      </div>
+    <% else %>
+      <div class="card-category">
+        <%= link_to collection.title, collection_path(collection)%>
+      </div>
     <% end %>
+  <% end %>
 </div>
