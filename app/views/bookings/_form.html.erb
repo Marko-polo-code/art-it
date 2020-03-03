@@ -1,12 +1,19 @@
-<%= simple_form_for([ @collection, @booking ], remote: true) do |f| %>
 
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
+
+
+
+
+
+<%= simple_form_for([ @collection, @booking ]) do |f| %>
+
+  <%= f.input :start_date, as: :hidden %>
+  <%= f.input :end_date, as: :hidden %>
+  <%= f.input :total_price, as: :hidden %>
   <%= f.button :submit %>
     <% if @booking.errors.any? %>
       <div class="errors-container">
       <ul>
-        <% @restaurant.errors.full_messages.each do |message| %>
+        <% @booking.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
