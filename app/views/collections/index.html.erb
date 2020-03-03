@@ -1,5 +1,14 @@
 <h1>Collections</h1>
 
-<% @collections.each do |collection| %>
-<%= collection.id %>
-<% end %>
+<div class="cards">
+  <% @collections.each do |collection| %>
+
+    
+    <div class="card-category">
+
+        <%= link_to collection.title, collection_path(collection)%>
+    </div>
+
+
+    <% end %>
+</div>

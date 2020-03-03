@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   get "/dashboard", to: "pages#dashboard", as: :dashboard
+  get "/account", to: "pages#account", as: :account
 end

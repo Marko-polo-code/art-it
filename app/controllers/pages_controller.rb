@@ -6,4 +6,7 @@ class PagesController < ApplicationController
     @made_bookings = current_user.bookings
     @received_bookings = Booking.all.select { |booking| booking.collection.user == current_user }
   end
+
+  def account
+  end
 end
