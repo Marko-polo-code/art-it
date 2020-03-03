@@ -1,5 +1,5 @@
 
-<div class="col s12 m7">
+<div class="collection-description" style="width: 20rem; margin:0 auto;" >
     <div class="card horizontal">
     <h2 class="header"><%= @collection.title %></h2>
       <div class="card-image">
@@ -10,18 +10,21 @@
           <p><%= @collection.price %></p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
         </div>
       </div>
     </div>
   </div>
 
+
 <% @collection.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
-<h1>Do you like it? Make a booking</h1>
+<br>
 
+<p>Do you like it? Make a booking</p>
+
+<div class="booking-form float-right" style="width: 18rem; margin-right: 20px">
 
 <%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
   <%= f.input :start_date, as: :date %>
@@ -38,3 +41,5 @@
   <% end %>
 
 <% end %>
+  </div>
+</div>
