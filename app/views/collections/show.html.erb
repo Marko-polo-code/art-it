@@ -1,8 +1,21 @@
-<h1>This is the show page</h1>
 
-<%= @collection.title %>
-<%= @collection.description %>
-<%= @collection.price %>
-<h1>This is the show page</h1>
+<div class="col s12 m7">
+    <div class="card horizontal">
+    <h2 class="header"><%= @collection.title %></h2>
+      <div class="card-image">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p><%= @collection.description %></p>
+          <p><%= @collection.price %></p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<%= render 'bookings/form'  %>
+
+
+  <%= render 'bookings/form'  %>

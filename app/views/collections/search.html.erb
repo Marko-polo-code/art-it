@@ -1,8 +1,7 @@
 <h1>Collections</h1>
 
 <div class="cards">
-  <% unless @collections.nil? %>
-  <% @collections.each do |collection| %>
+  <% @search_results.each do |collection| %>
 
     
     <div class="card-trip">
@@ -14,5 +13,4 @@
       </div>
     </div>
     <% end %>
-  <% end %>
 </div>
