@@ -4,6 +4,17 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    @collection = Cocktail.find
+    @collection = Collection.find(params[:id])
+  end
+
+
+  private
+
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
+
+  def collection_params
+    params.require(:collection).permit(:title, :description, :price, :user_id )
   end
 end
