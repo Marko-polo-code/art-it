@@ -13,6 +13,9 @@
 
 require 'faker'
 
+# Create a default development user for everyone to use
+User.create(email: "dev@email.com", password: "password")
+
 puts 'Creating 10 fake users...'
 10.times do
   user = User.new(
