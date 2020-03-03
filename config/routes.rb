@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # get "/collections/search", to: "collections#search", as: :search
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :collections do
-    resources :bookings, only: [:create]
+    resources :bookings, only: [:create, :new]
     resources :reviews, only: [:new, :create]
   end
   

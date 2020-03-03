@@ -16,6 +16,25 @@
     </div>
   </div>
 
+<% @collection.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
+<h1>This is the show page</h1>
 
 
-  <%= render 'bookings/form'  %>
+<%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
+  <%= f.input :start_date, as: :date %>
+  <%= f.input :end_date, as: :date %>
+  <%= f.button :submit %>
+    <% if @booking.errors.any? %>
+      <div class="errors-container">
+      <ul>
+        <% @restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% end %>

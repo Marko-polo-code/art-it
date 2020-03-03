@@ -3,16 +3,15 @@
 <div class="cards">
   <% unless @collections.nil? %>
   <% @collections.each do |collection| %>
-
-    
-    <div class="card-trip">
-      <img src="https://source.unsplash.com/<%= rand(1400..1500) %>x900/?arts-culture"/>
-        <div>
-         <h2 class="card-trip-pricing"></h2>
-            <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
+    <% if collection.photos.attached? %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
         <%= link_to collection.title, collection_path(collection)%>
       </div>
-    </div>
+    <% else %>
+      <div class="card-category">
+        <%= link_to collection.title, collection_path(collection)%>
+      </div>
     <% end %>
+  <% end %>
   <% end %>
 </div>
