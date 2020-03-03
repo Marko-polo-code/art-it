@@ -5,6 +5,7 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
+    @booking = Booking.new
   end
 
   private

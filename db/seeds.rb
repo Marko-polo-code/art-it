@@ -13,6 +13,9 @@
 
 require 'faker'
 
+# Create a default development user for everyone to use
+User.create(email: "dev@email.com", password: "password")
+
 puts 'Creating 10 fake users...'
 10.times do
   user = User.new(
@@ -72,15 +75,15 @@ puts 'Creating 6 bookings'
 booking_1 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 4000)
 booking_1.save!
 
-booking_2 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3, total_price: 2500))
+booking_2 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 2500)
 booking_2.save!
 
 
-booking_3 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3, total_price: 6300))
+booking_3 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 6300)
 booking_3.save!
 
 
-booking_4 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3, total_price: 400))
+booking_4 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 400)
 booking_4.save!
 
 
@@ -88,10 +91,10 @@ booking_5 = Booking.new(user: User.all.sample, collection: Collection.all.sample
 booking_5.save!
 
 
-booking_6 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3, total_price: 2550))
+booking_6 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 2550)
 booking_6.save!
 
-booking_7 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3, total_price: 6440))
+booking_7 = Booking.new(user: User.all.sample, collection: Collection.all.sample, start_date: Faker::Date.in_date_period(year: 2020, month: 2), end_date: Faker::Date.in_date_period(year: 2020, month: 3), total_price: 6440)
 booking_7.save!
 
 puts 'Finished!'
