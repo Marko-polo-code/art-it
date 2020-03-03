@@ -1,11 +1,25 @@
-<h1>This is the show page</h1>
 
-<%= @collection.title %>
+<div class="col s12 m7">
+    <div class="card horizontal">
+    <h2 class="header"><%= @collection.title %></h2>
+      <div class="card-image">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p><%= @collection.description %></p>
+          <p><%= @collection.price %></p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <% @collection.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-<%= @collection.description %>
-<%= @collection.price %>
+
 <h1>This is the show page</h1>
 
 

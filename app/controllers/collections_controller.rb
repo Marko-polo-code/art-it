@@ -1,8 +1,13 @@
 class CollectionsController < ApplicationController
   def index
-    @collections = Collection.all
+    if params[:q]
+      @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
+    else 
+      @collections = Collection.all
+    end
   end
-
+  
+ 
   def show
     @collection = Collection.find(params[:id])
     @booking = Booking.new
