@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top <%= "back-blue" if params[:action] != "index" %>">
     <%= link_to (image_tag("http://icon-library.com/images/art-icon-png/art-icon-png-7.jpg")), collections_path, class: "navbar-brand" %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,6 @@
       <li class="nav-item">
         <form action="/collections" class='nav-link' method="get">
           <input type="text" id="search-bar" name="q" placeholder="Search">
-          <input type="submit"><div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
 
         </form>
 

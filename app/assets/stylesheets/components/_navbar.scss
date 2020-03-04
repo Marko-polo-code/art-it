@@ -1,9 +1,23 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #93B5C6;
+  // background: #93B5C6;
   background-color: transparent;
   transition: 0.5s background-color ease;
 
+}
+
+.navbar-lewagon:not(.navbar-lewagonsolid) {
+  .nav-link {
+    color: rgba(255, 255, 255, .6);
+  }
+
+  .nav-item.active .nav-link {
+    color: white !important;
+  }
+}
+
+.back-blue {
+  background: #93B5C6;
 }
 
 .navbar-lewagonsolid {
