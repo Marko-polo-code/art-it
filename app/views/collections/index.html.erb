@@ -1,14 +1,15 @@
 <h1>Collections</h1>
 
-<div class="cards">
   <% unless @collections.nil? %>
+  <div class="cards">
+  
   <% @collections.each do |collection| %>
     <% if collection.photos.attached? %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+      <div class="card-trip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
         <%= link_to collection.title, collection_path(collection)%>
       </div>
     <% else %>
-      <div class="card-category">
+      <div class="card-trip">
         <%= link_to collection.title, collection_path(collection)%>
       </div>
     <% end %>
