@@ -1,18 +1,45 @@
-<h1>Collections</h1>
+
+
+  <h1 class="title">Collections</h1>
+
+<br>
 
   <% unless @collections.nil? %>
+
   <div class="cards">
+  
   
   <% @collections.each do |collection| %>
     <% if collection.photos.attached? %>
-      <div class="card-trip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+
+      <div class="product-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
         <%= link_to collection.title, collection_path(collection)%>
       </div>
     <% else %>
-      <div class="card-trip">
+      <div class="product-tumb">
         <%= link_to collection.title, collection_path(collection)%>
-      </div>
+        <div class="product-bottom-details">
+          </div>
     <% end %>
+      </div>
   <% end %>
   <% end %>
 </div>
+
+<%# <div class="product-card">
+			<span class="product-catagory">Women,bag</span>
+		<div class="badge">Hot</div>
+		<div class="product-tumb">
+			<img src="https://i.imgur.com/xdbHo4E.png" alt="">
+		</div>
+			<h4><a href="">Women leather bag</a></h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
+			<div class="product-bottom-details">
+				<div class="product-price"><small>$96.00</small>$230.99</div>
+				<div class="product-links">
+					<a href=""><i class="fa fa-heart"></i></a>
+					<a href=""><i class="fa fa-shopping-cart"></i></a>
+				</div>
+			</div>
+		</div>
+	</div> %>

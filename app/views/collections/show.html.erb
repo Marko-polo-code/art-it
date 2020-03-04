@@ -1,5 +1,7 @@
 
-<div class="col s12 m7">
+<%= link_to "Home Page", collections_path %>
+
+<div class="card" style="width: 18rem;">
     <div class="card horizontal">
     <h2 class="header"><%= @collection.title %></h2>
       <div class="card-image">
@@ -20,9 +22,10 @@
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
-<h1>Do you like it? Make a booking</h1>
+<h3 class="booking-question">Do you like it? Make a booking</h3>
 
 
+<div class="card float-right" style="width: 18rem; margin-right:40px">
 <%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
   <%= f.input :start_date, as: :date %>
   <%= f.input :end_date, as: :date %>
@@ -30,11 +33,34 @@
     <% if @booking.errors.any? %>
       <div class="errors-container">
       <ul>
-        <% @restaurant.errors.full_messages.each do |message| %>
+        <% @collection.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    </div>
   <% end %>
+<% end %>
+
+<h2>
+  <%#= pluralize @collection.reviews.size, "review" %>
+</h2>
+
+<div id="reviews">
+  <% if @collection.reviews.blank? %>
+    Be the first to leave a review for <%= @collection.title %>
+  <% else %>
+    <% @collection.reviews.each do |review| %>
+      <div class="card-product">
+        <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
+        <div class="card-product-infos">
+          <h2><%= review.title %></h2>
+          <p><%= review.content %></p>
+          <%= review.rating %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
 
 <% end %>
+
