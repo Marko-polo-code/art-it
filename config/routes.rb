@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  resources :bookings, only: [] do
+      put :accept
+      put :reject
+  end
+
   get "/dashboard", to: "pages#dashboard", as: :dashboard
   get "/account", to: "pages#account", as: :account
   get 'about', to: 'pages#about', as: :about

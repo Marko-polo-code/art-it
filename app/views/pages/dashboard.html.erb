@@ -24,3 +24,14 @@
 
 
 
+
+<% @received_bookings.each do |bookings| %>
+<%= bookings.collection.title %>
+<%= bookings.start_date %>
+<%= bookings.end_date %>
+
+<% unless bookings.status == "accepted" || bookings.status == "rejected" %>
+<%= link_to 'accept', booking_accept_path(bookings), method: :put %>
+<%= link_to 'reject', booking_reject_path(bookings), method: :put %>
+<% end %>
+<% end %>
