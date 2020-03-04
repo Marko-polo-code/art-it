@@ -1,13 +1,14 @@
 class CollectionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show, :about, :contact]
   def index
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
-    else 
+    else
       @collections = Collection.all
     end
   end
-  
- 
+
+
   def show
     @collection = Collection.find(params[:id])
     @booking = Booking.new

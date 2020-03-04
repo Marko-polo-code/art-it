@@ -15,16 +15,19 @@
 
 <p>Made Bookings</p>
 
-<% @made_bookings.each do |bookings| %>
-<p><%= bookings.collection.title %></p>
-<p><%= bookings.start_date %></p>
-<p><%= bookings.end_date %></p>
+<% @made_bookings.each do |booking| %>
+  <p><%= booking.collection.title %></p>
+  <p><%= booking.start_date %></p>
+  <p><%= booking.end_date %></p>
+  <% if booking.review.nil? %>
+    <%= link_to "Review this booking", new_booking_review_path(booking)%>
+  <% end %>
 <% end %>
 
 <p>Received Bookings</p>
 
-<% @received_bookings.each do |bookings| %>
-<p><%= bookings.collection.title %></p>
-<p><%= bookings.start_date %></p>
-<p><%= bookings.end_date %></p>
+<% @received_bookings.each do |booking| %>
+<p><%= booking.collection.title %></p>
+<p><%= booking.start_date %></p>
+<p><%= booking.end_date %></p>
 <% end %>

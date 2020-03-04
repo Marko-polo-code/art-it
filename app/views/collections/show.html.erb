@@ -30,11 +30,31 @@
     <% if @booking.errors.any? %>
       <div class="errors-container">
       <ul>
-        <% @restaurant.errors.full_messages.each do |message| %>
+        <% @collection.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
 <% end %>
+
+<h2>
+  <%#= pluralize @collection.reviews.size, "review" %>
+</h2>
+
+<div id="reviews">
+  <% if @collection.reviews.blank? %>
+    Be the first to leave a review for <%= @collection.title %>
+  <% else %>
+    <% @collection.reviews.each do |review| %>
+      <div class="card-product">
+        <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
+        <div class="card-product-infos">
+          <h2><%= review.title %></h2>
+          <p><%= review.content %></p>
+          <%= review.rating %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

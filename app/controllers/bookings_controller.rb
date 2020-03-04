@@ -14,8 +14,6 @@ class BookingsController < ApplicationController
     @booking.end_date = end_date
     @collection = Collection.find(params[:collection_id])
     @booking.total_price = (@booking.end_date - @booking.start_date).to_i * @collection.price
-
-
   end
 
   def create
