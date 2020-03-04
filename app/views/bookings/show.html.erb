@@ -1,0 +1,17 @@
+
+
+<h2>Made Bookings</h2>
+
+<% @made_bookings.each do |bookings| %>
+<p><%= bookings.collection.title %></p>
+<p><%= bookings.start_date %></P>
+<p><%= bookings.end_date %></p>
+<% end %>
+
+<h2>Received Bookings</h2>
+
+<% @received_bookings.each do |bookings| %>
+<%= bookings.collection.title %>
+<%= bookings.start_date %>
+<%= bookings.end_date %>
+<% end %>

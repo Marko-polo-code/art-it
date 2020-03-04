@@ -30,12 +30,24 @@ class CollectionsController < ApplicationController
   end
 
   def edit
+    set_collection
   end
 
   def update
+    set_collection
+    @collection.update(collection_params)
+
+    if @collection.save
+      redirect_to collection_path(@collection)
+    else
+      render :edit
+    end
   end
 
-  def delete
+  def destroy
+    set_collection
+    @collection.destroy
+    redirect_to dashboard_path
   end
 
   private
