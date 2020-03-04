@@ -1,4 +1,5 @@
 
+
 <h2>My Collection</h2>
 
 <% @collections.each do |my_collection| %>
@@ -23,15 +24,25 @@
 <span><%= link_to 'Add', new_collection_path %></span>
 
 
+<% @made_bookings.each do |booking| %>
+  <p><%= booking.collection.title %></p>
+  <p><%= booking.start_date %></p>
+  <p><%= booking.end_date %></p>
+  <% if booking.review.nil? %>
+    <%= link_to "Review this booking", new_booking_review_path(booking)%>
+  <% end %>
+<% end %>
 
 
-<% @received_bookings.each do |bookings| %>
-<%= bookings.collection.title %>
-<%= bookings.start_date %>
-<%= bookings.end_date %>
 
-<% unless bookings.status == "accepted" || bookings.status == "rejected" %>
-<%= link_to 'accept', booking_accept_path(bookings), method: :put %>
-<%= link_to 'reject', booking_reject_path(bookings), method: :put %>
+<% @received_bookings.each do |booking| %>
+<p><%= booking.collection.title %></p>
+<p><%= booking.start_date %></p>
+<p><%= booking.end_date %></p>
+
+
+<% unless booking.status == "accepted" || booking.status == "rejected" %>
+<%= link_to 'accept', booking_accept_path(booking), method: :put %>
+<%= link_to 'reject', booking_reject_path(booking), method: :put %>
 <% end %>
 <% end %>

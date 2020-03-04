@@ -8,10 +8,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <form action="/collections" method="get">
-      <input type="text" name="q" placeholder="Search">
-      <input type="submit">
-    </form>
+      <li class="nav-item">
+        <form action="/collections" class='nav-link' method="get">
+          <input type="text" name="q" placeholder="Search">
+          <input type="submit">
+        </form>
+
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item active">
           <%= link_to "My Dashboard", dashboard_path, class: "nav-link" %>

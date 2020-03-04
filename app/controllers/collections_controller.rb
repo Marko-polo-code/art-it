@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show, :about, :contact]
   def index
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
