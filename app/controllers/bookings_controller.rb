@@ -24,16 +24,21 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if  @booking.save
-      redirect_to dashboard_path
+      redirect_to booking_path(@booking)
     else
       render "new"
-    raise
     end
+  end
 
-    def show
-      @booking = Booking.find(params[:id])
-      @booking = Booking.new
-    end
+
+  def show
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to booking_path(@booking)
   end
 
   def accept
@@ -54,6 +59,6 @@ class BookingsController < ApplicationController
 
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total_price)
+    params.require(:booking).permit(:start_date, :end_date, :total_price, :user_approved)
   end
 end

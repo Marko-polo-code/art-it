@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :bookings, only: [] do
+  resources :bookings, only: [:show, :update] do
       put :accept
       put :reject
   end
