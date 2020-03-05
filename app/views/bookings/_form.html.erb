@@ -1,9 +1,7 @@
 
 
 
-<% @booking.total_price =( (@booking.end_date - @booking.start_date).to_i + 1)* @collection.price %>
 <%= simple_form_for([ @collection, @booking ]) do |f| %>
-
   <%= f.input :start_date, as: :hidden %>
   <%= f.input :end_date, as: :hidden %>
   <p>Total: <%= @booking.total_price %></p>
