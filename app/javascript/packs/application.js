@@ -17,3 +17,4 @@ const initUpdateNavbarOnScroll = () => {
   }
 
 initUpdateNavbarOnScroll();
+

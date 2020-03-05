@@ -1,31 +1,98 @@
 
 <div class="home-banner">
-  <h1 class="title">Collections</h1>
+  <h1 class="title">Art It</h1>
+  <h2>An Art Collection at your Tip</h2>
 </div>
 
-  <% unless @collections.nil? %>
 
+<br>
 
-
+  
 
   <div class="cards">
   
-  
-  <% @collections.each do |collection| %>
-    <% if collection.photos.attached? %>
+    
+      <% @collections.each do |collection| %>
+        
+        <% if collection.photos.attached? %>
 
-      <div class="product-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path collection.photos[0].key, height: 300, width: 400, crop: :fill %>')">
-        <%= link_to collection.title, collection_path(collection)%>
-      </div>
-    <% else %>
-      <div class="product-tumb">
-        <%= link_to collection.title, collection_path(collection)%>
-        <div class="product-bottom-details">
+      <div class="card-trip">
+        <%= link_to new_favorite_path(collection_id: collection), method: :post, class: "fav-heart" do %>
+            <i class="far fa-heart"></i> 
+        <% end %>
+         <%= cl_image_tag collection.photos[0].key, height: 300, width: 400, crop: :fill %>
+         <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
+        <div class="card-trip-infos">
+          <div>
+          <p><%= collection.description %><p>
           </div>
-    <% end %>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
       </div>
-  <% end %>
-  <% end %>
-</div>
 
+    <% else %>
 
+    
+      <div class="card-trip">
+         <%= link_to new_favorite_path(collection_id: collection), method: :post, class:"fav-heart" do%>
+            <i class="far fa-heart"></i> 
+        <% end %>
+        <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
+        <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
+        <div class="card-trip-infos">
+          <div>
+          <p><%= collection.description %><p>
+          </div>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
+     </div>
+      <% end %>
+        <% end %>
+    
+  </div>
+
+  
+
+<br>
+
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Art It</h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					·
+					<a href="#">Faq</a>
+					·
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Art It © Since 2020</p>
+
+				<div class="footer-icons">
+
+          <p>Find Us On</p>
+					<a href="#"><i class="fab fa-facebook"></i></a>
+					<a href="#"><i class="fab fa-twitter"></i></a>
+					<a href="#"><i class="fab fa-linkedin"></i></a>
+					<a href="#"><i class="fab fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<p>About</p>
+
+				<form action="#" method="post">
+
+					
+
+				</form>
+
+			</div>
+
+		</footer>
