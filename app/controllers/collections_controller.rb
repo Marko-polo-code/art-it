@@ -1,10 +1,9 @@
 class CollectionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :about, :contact]
   def index
+    @collections = policy_scope(Collection)
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
-    else
-      @collections = policy_scope(Collection)
     end
   end
 
