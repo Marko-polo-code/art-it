@@ -21,8 +21,8 @@
             <i class="far fa-heart"></i> 
         <% end %>
          <%= cl_image_tag collection.photos[0].key, height: 300, width: 400, crop: :fill %>
-         <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
         <div class="card-trip-infos">
+         <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
           <div>
           <p><%= collection.description %><p>
           </div>
@@ -38,15 +38,15 @@
             <i class="far fa-heart"></i> 
         <% end %>
         <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
-        <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
         <div class="card-trip-infos">
+        <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
           <div>
           <p><%= collection.description %><p>
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
-     </div>
       <% end %>
+     </div>
         <% end %>
     
   </div>
