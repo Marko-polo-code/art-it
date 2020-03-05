@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     day = params[:booking]["end_date(3i)"].to_i
     end_date = Date.new(year, month, day)
     @booking = Booking.new
+    authorize @booking
     @booking.start_date = start_date
     @booking.end_date = end_date
     @collection = Collection.find(params[:collection_id])
@@ -18,6 +19,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
     # we need `collection_id` to associate booking with corresponding collection
     @collection = Collection.find(params[:collection_id])
     @booking.collection = @collection
@@ -33,11 +35,13 @@ class BookingsController < ApplicationController
     def show
       @booking = Booking.find(params[:id])
       @booking = Booking.new
+      authorize @booking
     end
   end
 
   def accept
     @booking = Booking.find(params[:booking_id])
+    authorize @booking
     @booking.status = "accepted"
     @booking.save
     redirect_to dashboard_path, notice: "Booking accepted"
@@ -45,6 +49,7 @@ class BookingsController < ApplicationController
 
   def reject
     @booking = Booking.find(params[:booking_id])
+    authorize @booking
     @booking.status = "rejected"
     @booking.save
     redirect_to dashboard_path, notice: "Booking rejected"
