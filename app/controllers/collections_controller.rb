@@ -12,6 +12,7 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @booking = Booking.new
+    @average_rating = @collection.reviews.pluck(:rating).sum / @collection.reviews.length
   end
 
   def new
