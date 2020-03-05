@@ -1,11 +1,23 @@
 class CollectionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :about, :contact]
   def index
+    @collections = policy_scope(Collection).geocoded #returns flats with coordinates
+
+    @markers = @collections.map do |collection|
+      {
+        lat: collection.latitude,
+        lng: collection.longitude,
+        # infoWindow: render_to_string(partial: "infowindow", locals: { collection: collection }),
+        image_url: helpers.asset_url("https://lh3.googleusercontent.com/proxy/UUC72lDE751OmAkbnCJK70fKSvIYm4MWFJyxomljCx0LKOXLMrkrIOCqBqgZQ-Y5B6N2ivowr1rapPyJ3Qui23fIYxv686b-6lv2-8XOKRu9w6bgpDlZl5D09aoi0bL-9FyD30z5EI4OnA")
+      }
+    end
     @collections = policy_scope(Collection)
+    
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
     end
-  end
+  
+end
 
   def show
     @collection = Collection.find(params[:id])
