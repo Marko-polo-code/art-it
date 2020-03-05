@@ -1,17 +1,28 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4>Start date: <%= @booking.start_date %></h4>
+      <h4>End date: <%= @booking.end_date %></h4>
+      <p>Total Price: <%= @booking.total_price %></p>
+      <% if @booking.user_approved %>
+        <p>Congratulations, your booking is complete.</p>
+      <% else %>
+        <h2>Please confirm or edit</h2>
 
-<h2>Made Bookings</h2>
+        <div id='flat-booking-dates' data-unavailable="<%= @booking.collection.unavailable_dates.to_json %>">
+              <%= simple_form_for([@collection, @booking]) do |f| %>
+                <%= f.input :user_approved, as: :hidden, :input_html => { :value => true } %>
+                <%= f.input :start_date, as: :string, type: :text %>
+                <%= f.input :end_date, as: :string, type: :text %>
+                <%= f.submit "Confirm", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+      <% end %>
 
-<% @made_bookings.each do |bookings| %>
-<p><%= bookings.collection.title %></p>
-<p><%= bookings.start_date %></P>
-<p><%= bookings.end_date %></p>
-<% end %>
+    </div>
+  </div>
+</div>
 
-<h2>Received Bookings</h2>
 
-<% @received_bookings.each do |bookings| %>
-<%= bookings.collection.title %>
-<%= bookings.start_date %>
-<%= bookings.end_date %>
-<% end %>
+<%= link_to "Back", collections_path(@collections) %>

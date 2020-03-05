@@ -5,10 +5,13 @@ class Booking < ApplicationRecord
 
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :total_price, presence: true
   validate :end_date_after_start_date
+  before_save :set_total_price
 
-  private
+
+  def set_total_price
+    self.total_price = ((self.end_date - self.start_date).to_i + 1)* self.collection.price
+  end
 
   def end_date_after_start_date
     return if end_date.blank? || start_date.blank?
