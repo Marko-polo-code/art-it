@@ -1,17 +1,13 @@
 
+<div class="card" style="width:18rem;">
 
-<h2>Made Bookings</h2>
+  <h2>Start date: <%= @booking.start_date %></h2>
+  <h2>End date: <%= @booking.end_date %></h2>
 
-<% @made_bookings.each do |bookings| %>
-<p><%= bookings.collection.title %></p>
-<p><%= bookings.start_date %></P>
-<p><%= bookings.end_date %></p>
-<% end %>
+  <h3>Total Price: <%= @booking.total_price %></h3>
 
-<h2>Received Bookings</h2>
+  <%= render 'form' %>
 
-<% @received_bookings.each do |bookings| %>
-<%= bookings.collection.title %>
-<%= bookings.start_date %>
-<%= bookings.end_date %>
-<% end %>
+</div>
+
+<%= link_to "Back", collections_path(@collections) %>

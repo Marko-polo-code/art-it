@@ -24,10 +24,9 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if  @booking.save
-      redirect_to dashboard_path
+      redirect_to booking_path(@booking)
     else
       render "new"
-    raise
     end
 
     def show
