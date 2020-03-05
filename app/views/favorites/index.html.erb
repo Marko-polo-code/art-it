@@ -1,0 +1,44 @@
+<div class="cards">
+
+<% @favorites.each do |favorite| %>
+
+     <% if favorite.collection.photos.attached? %>
+
+      <div class="card-trip">
+         <%= cl_image_tag favorite.collection.photos[0].key, height: 300, width: 400, crop: :fill %>
+         <p id="description"><%=link_to favorite.collection.title, collection_path(favorite.collection)%></p>
+            <div class="card-trip-infos">
+            <%= link_to collection_favorite_path(favorite.collection, favorite),
+            method: :delete,
+            data: { confirm: "This Collection will be removed from the favorites" } do %>
+            <i class="fas fa-heart"></i>
+            <% end %>
+          <div>
+            <p><%= favorite.collection.description %><p>
+          </div>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
+      </div>
+
+
+    <% else %>
+
+    
+      <div class="card-trip">
+        <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
+        <p id="description"><%= link_to favorite.collection.title, collection_path(favorite.collection)%></p>
+        <div class="card-trip-infos">
+         <%= link_to collection_favorite_path(favorite.collection, favorite),
+            method: :delete,
+            data: { confirm: "This Collection will be removed from the favorites" } do %>
+            <i class="fas fa-heart"></i>
+         <% end %>
+          <div>
+          <p><%= favorite.collection.description %><p>
+          </div>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
+     </div>
+      <% end %>
+<% end %>
+</div>

@@ -8,7 +8,6 @@ class CollectionsController < ApplicationController
     end
   end
 
-
   def show
     @collection = Collection.find(params[:id])
     @booking = Booking.new

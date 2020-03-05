@@ -1,4 +1,4 @@
-h1, h2, h3, p, label {
+h1, h3, label {
   font-family: 'Playfair Display', serif;
   color: black;
 }
@@ -7,4 +7,17 @@ h1, h2, h3, p, label {
 .booking-question {
   text-align: right;
   margin-bottom: 20px;
+}
+
+h2 {
+  color: white;
+  font-family: 'Playfair Display', serif;
+}
+
+#description {
+  font-size: 15px;
+}
+
+p {
+  font-size: 10px;
 }
