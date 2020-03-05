@@ -1,5 +1,6 @@
 
 
+
 <div class="container" style="margin-top: 9rem">
 
 
@@ -14,8 +15,12 @@
               <div class="card-content">
                 <p><%= @collection.description %></p>
                 <p><%= @collection.price %></p>
-                <% @average_rating.times do  %>
-                  <i class="fas fa-star" style="color: yellow"></i>
+                <% if @average_rating %>
+                  <% @average_rating.times do  %>
+                    <i class="fas fa-star" style="color: yellow"></i>
+                  <% end %>
+                <% else %>
+                  No ratings yet.
                 <% end %>
                </div>
                <div class="card-action">
@@ -42,6 +47,7 @@
       </div>
 
       </div>
+
 
     <div id="reviews">
       <% if @collection.reviews.blank? %>

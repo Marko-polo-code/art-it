@@ -46,5 +46,8 @@ const initFlatpickr = () => {
 initFlatpickr();
 
 
+
+
 initStarRating();
 initUpdateNavbarOnScroll();
+
