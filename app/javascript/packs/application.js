@@ -1,19 +1,10 @@
 import "bootstrap";
-// import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { initUpdateNavbarOnScroll } from '../plugins/init_update_navbar_on_scroll';
 
 import flatpickr from "flatpickr";
 
-const initUpdateNavbarOnScroll = () => {
-    const navbar = document.querySelector('.navbar-lewagon');
-    if (navbar) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY >= window.innerHeight) {
-          navbar.classList.add('navbar-lewagonsolid');
-        } else {
-          navbar.classList.remove('navbar-lewagonsolid');
-        }
-      });
-    }
-  }
+// Rating star functionnality
+import { initStarRating } from '../plugins/init_star_rating';
 
+initStarRating();
 initUpdateNavbarOnScroll();

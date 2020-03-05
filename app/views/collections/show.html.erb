@@ -11,6 +11,9 @@
                <div class="card-content">
                 <p><%= @collection.description %></p>
                 <p><%= @collection.price %></p>
+                <% @average_rating.times do  %>
+                  <i class="fas fa-star" style="color: yellow"></i>
+                <% end %>
                </div>
                <div class="card-action">
                </div>
@@ -43,7 +46,9 @@
         <div class="card-product-infos">
           <h2><%= review.title %></h2>
           <p><%= review.content %></p>
-          <%= review.rating %>
+          <% review.rating.times do  %>
+          <i class="fas fa-star" style="color: yellow"></i>
+          <% end %>
         </div>
       </div>
     <% end %>
