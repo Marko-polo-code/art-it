@@ -12,12 +12,16 @@ class CollectionsController < ApplicationController
       }
     end
     @collections = policy_scope(Collection)
-    
-    if params[:q]
-      @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
+
+    if params[:q].present?
+      @collections = Collection.search_by_title_and_address(params[:q])
+    else
+      @collections = Collection.all
     end
-  
-end
+  end
+
+
+
 
   def show
     @collection = Collection.find(params[:id])
