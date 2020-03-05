@@ -37,7 +37,7 @@
       <h3 class="booking-question">Do you like it? Make a booking</h3>
         <div id='flat-booking-dates' data-unavailable="<%= @collection.unavailable_dates.to_json %>">
           <% if current_user.id != @collection.user_id  %>
-          <%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
+          <%= simple_form_for [ @collection, @booking ] do |f| %>
               <%= f.input :start_date, as: :string, type: :text %>
               <%= f.input :end_date, as: :string, type: :text %>
               <%= f.submit "Book", class: "btn btn-primary" %>
