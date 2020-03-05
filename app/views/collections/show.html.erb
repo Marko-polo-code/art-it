@@ -1,63 +1,60 @@
 
-<%= link_to "Home Page", collections_path %>
 
-    <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-             <div class="card horizontal">
-               <h2 class="header"><%= @collection.title %></h2>
-               <div class="card-image">
-             </div>
-             <div class="card-stacked">
-               <div class="card-content">
+<div class="container" style="margin-top: 9rem">
+    <div class="row">
+
+      <div class="col-md-6">
+         <div class="card horizontal">
+           <h2 class="header"><%= @collection.title %></h2>
+            <div class="card-image">
+            </div>
+            <div class="card-stacked">
+              <div class="card-content">
                 <p><%= @collection.description %></p>
                 <p><%= @collection.price %></p>
-               </div>
-               <div class="card-action">
-                <a href="#">This is a link</a>
-               </div>
+              </div>
+              <div class="card-action">
               </div>
             </div>
-          <% @collection.photos.each do |photo| %>
+          </div>
+        <% @collection.photos.each do |photo| %>
           <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
         <% end %>
-    </div>
-
-
-   <div class="col-md-6">
-      <h3 class="booking-question">Do you like it? Make a booking</h3>
-      <div class="" >
-        <%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
-          <%= f.input :start_date, as: :date %>
-          <%= f.input :end_date, as: :date %>
-          <%= f.button :submit %>
-        <% end %>
       </div>
-    </div>
- </div>
-</div>
-
-<h2>
-
-</h2>
 
 
-<div id="reviews">
-  <% if @collection.reviews.blank? %>
-    Be the first to leave a review for <%= @collection.title %>
-  <% else %>
-    <% @collection.reviews.each do |review| %>
-      <div class="card-product">
-        <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
-        <div class="card-product-infos">
-          <h2><%= review.title %></h2>
-          <p><%= review.content %></p>
-          <%= review.rating %>
+     <div class="col-md-6">
+        <h3 class="booking-question">Do you like it? Make a booking</h3>
+        <div class="" >
+          <%= simple_form_for [ @collection, @booking ], :url => new_collection_booking_path(@collection), :method => :get do |f| %>
+            <%= f.input :start_date, as: :date %>
+            <%= f.input :end_date, as: :date %>
+            <%= f.button :submit %>
+          <% end %>
         </div>
       </div>
-    <% end %>
-   <% end %>
+
+      <div id="reviews">
+        <% if @collection.reviews.blank? %>
+          Be the first to leave a review for <%= @collection.title %>
+        <% else %>
+          <% @collection.reviews.each do |review| %>
+            <div class="card-product">
+              <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
+              <div class="card-product-infos">
+                <h2><%= review.title %></h2>
+                <p><%= review.content %></p>
+                <%= review.rating %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    <%= link_to "Home Page", collections_path %>
+
   </div>
+</div>
 
 
 
