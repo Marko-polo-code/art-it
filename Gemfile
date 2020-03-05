@@ -10,6 +10,7 @@ gem 'redis'
 gem 'devise'
 gem 'faker'
 gem 'cloudinary'
+gem 'pundit'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
