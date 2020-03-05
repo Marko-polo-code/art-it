@@ -4,23 +4,28 @@ class CollectionsController < ApplicationController
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
     else
-      @collections = Collection.all
+      @collections = policy_scope(Collection)
     end
   end
 
   def show
     @collection = Collection.find(params[:id])
+    authorize @collection
     @booking = Booking.new
-    @average_rating = @collection.reviews.pluck(:rating).sum / @collection.reviews.length
+    if !@collection.reviews.empty?
+      @average_rating = @collection.reviews.pluck(:rating).sum / @collection.reviews.length
+    end
   end
 
   def new
     @collection = Collection.new
+    authorize @collection
   end
 
   def create
     @collection = Collection.new(collection_params)
     @collection.user = current_user
+    authorize @collection
 
     if @collection.save
       redirect_to collection_path(@collection)
@@ -31,10 +36,12 @@ class CollectionsController < ApplicationController
 
   def edit
     set_collection
+    authorize @collection
   end
 
   def update
     set_collection
+    authorize @collection
     @collection.update(collection_params)
 
     if @collection.save
@@ -46,6 +53,7 @@ class CollectionsController < ApplicationController
 
   def destroy
     set_collection
+    authorize @collection
     @collection.destroy
     redirect_to dashboard_path
   end
