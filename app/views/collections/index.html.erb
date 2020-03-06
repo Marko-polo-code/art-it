@@ -1,7 +1,8 @@
 
 <div class="home-banner">
-  <h1 class="title">Art It</h1>
-  <h2>An Art Collection at your Tip</h2>
+  <h1 id="title">Art It</h1>
+  
+  <h2 id="description-header">An Art Collection at your FingerTip</h2>
 </div>
 
 
@@ -25,6 +26,8 @@
          <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
           <div>
           <p><%= collection.description %><p>
+          <br>
+          <p id="price">$<%= collection.price %><p>
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
         </div>
@@ -42,6 +45,8 @@
         <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
           <div>
           <p><%= collection.description %><p>
+          <br>
+          <p id="price">$<%= collection.price %></p>
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
         </div>
@@ -49,7 +54,6 @@
      </div>
 
         <% end %>
-  </div>
   <div class="col-md-4">
     <div id="map"
     style="width: 100%;
@@ -59,6 +63,7 @@
     </div>
   </div>
 </div>
+  </div>
   
 
 <br>
@@ -71,9 +76,9 @@
 
 				<p class="footer-links">
 					<a href="#">Home</a>
-					·
+					-
 					<a href="#">Faq</a>
-					·
+					-
 					<a href="#">Contact</a>
 				</p>
 
@@ -81,10 +86,10 @@
 
 				<div class="footer-icons">
 
-          <p>Find Us On</p>
+          <p id="find">Find Us On</p>
 					<a href="#"><i class="fab fa-facebook"></i></a>
 					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin"></i></a>ba
+					<a href="#"><i class="fab fa-linkedin"></i></a>
 					<a href="#"><i class="fab fa-github"></i></a>
 
 				</div>
@@ -93,7 +98,7 @@
 
 			<div class="footer-right">
 
-				<p>About</p>
+				<a>About</a>
 
 				<form action="#" method="post">
 
