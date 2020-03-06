@@ -14,7 +14,7 @@ class Collection < ApplicationRecord
   scope :favorited_by, ->(email) { joins(:favorites).where(favorites: { user: User.where(username: username)})}
 
   include PgSearch::Model
-  pg_search_scope :global_search,
+  pg_search_scope :search_by_title_and_address,
     against: [ :title, :address ],
     using: {
       tsearch: { prefix: true }
