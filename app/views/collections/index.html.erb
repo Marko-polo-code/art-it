@@ -42,7 +42,7 @@
                 <br>
                 <p id="price">$<%= collection.price %></p>
               </div>
-            <% if current_user.photo.attached? %>
+            <% if current_user && current_user.photo.attached? %>
               <%= cl_image_tag current_user.photo.key,  class: "card-trip-user avatar-bordered" %>
             <% else %>
               <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png", class: "card-trip-user avatar-bordered" %>
@@ -52,7 +52,7 @@
       <% end %>
     <% end %>
     </div>
-    
+
   <div class="col-md-4">
       <div id="map"
       style="width: 100%;
