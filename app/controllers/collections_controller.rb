@@ -83,6 +83,6 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.require(:collection).permit(:title, :description, :price, photos: [] )
+    params.require(:collection).permit(:title, :description, :address, :price, photos: [] )
   end
 end
