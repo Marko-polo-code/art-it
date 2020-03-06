@@ -21,8 +21,7 @@ class CollectionsController < ApplicationController
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
     end
-    # raise
-  end
+end
 
 
 
