@@ -9,15 +9,46 @@ h1, h3, label {
   margin-bottom: 20px;
 }
 
-h2 {
+#title {
   color: white;
   font-family: 'Playfair Display', serif;
+}
+
+#description-header {
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
 }
 
 #description {
   font-size: 15px;
 }
 
-p {
-  font-size: 10px;
+#collection {
+  font-family: 'Playfair Display', serif;
+  color: black;
 }
+
+p {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: black;
+}
+
+.nav-link {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+}
+
+#find {
+  color: white;
+}
+
+#price {
+  font-size: 13px;
+}
+

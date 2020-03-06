@@ -1,4 +1,10 @@
-<div class="cards">
+
+<br>
+<br>
+
+<div class="row">
+
+  <div class="cards col-md-8 col-sm-12">
 
 <% @favorites.each do |favorite| %>
 
@@ -6,8 +12,8 @@
 
       <div class="card-trip">
          <%= cl_image_tag favorite.collection.photos[0].key, height: 300, width: 400, crop: :fill %>
-         <p id="description"><%=link_to favorite.collection.title, collection_path(favorite.collection)%></p>
             <div class="card-trip-infos">
+              <p id="description"><%=link_to favorite.collection.title, collection_path(favorite.collection)%></p>
             <%= link_to collection_favorite_path(favorite.collection, favorite),
             method: :delete,
             data: { confirm: "This Collection will be removed from the favorites" } do %>
@@ -15,6 +21,9 @@
             <% end %>
           <div>
             <p><%= favorite.collection.description %><p>
+            <br>
+            <p id="price">$<%= favorite.collection.price %></p>
+
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
@@ -26,8 +35,8 @@
     
       <div class="card-trip">
         <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
-        <p id="description"><%= link_to favorite.collection.title, collection_path(favorite.collection)%></p>
         <div class="card-trip-infos">
+          <p id="description"><%= link_to favorite.collection.title, collection_path(favorite.collection)%></p>
          <%= link_to collection_favorite_path(favorite.collection, favorite),
             method: :delete,
             data: { confirm: "This Collection will be removed from the favorites" } do %>
@@ -35,10 +44,66 @@
          <% end %>
           <div>
           <p><%= favorite.collection.description %><p>
+          <br>
+          <p id="price">$<%= favorite.collection.price %></p>
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
      </div>
-      <% end %>
-<% end %>
+  <% end %>
+  <% end %>
 </div>
+
+<div class="col-md-4">
+    <div id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer class="footer-distributed">
+
+			<div class="footer-left">
+
+				<h3>Art It</h3>
+
+				<p class="footer-links">
+					<a href="#">Home</a>
+					-
+					<a href="#">Faq</a>
+					-
+					<a href="#">Contact</a>
+				</p>
+
+				<p class="footer-company-name">Art It © Since 2020</p>
+
+				<div class="footer-icons">
+
+          <p id="find">Find Us On</p>
+					<a href="#"><i class="fab fa-facebook"></i></a>
+					<a href="#"><i class="fab fa-twitter"></i></a>
+					<a href="#"><i class="fab fa-linkedin"></i></a>
+					<a href="#"><i class="fab fa-github"></i></a>
+
+				</div>
+
+			</div>
+
+			<div class="footer-right">
+
+				<a>About</a>
+
+				<form action="#" method="post">
+
+					
+
+				</form>
+
+			</div>
+
+		</footer>
