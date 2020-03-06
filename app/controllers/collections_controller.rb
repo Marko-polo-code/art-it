@@ -1,7 +1,12 @@
 class CollectionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :about, :contact]
+
   def index
-    @collections = policy_scope(Collection).geocoded #returns flats with coordinates
+    if params[:q].present?
+      @collections = policy_scope(Collection).geocoded.search_by_title_and_address(params[:q])
+    else
+    @collections = policy_scope(Collection).geocoded
+    end
 
     @markers = @collections.map do |collection|
       {
@@ -17,12 +22,21 @@ class CollectionsController < ApplicationController
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
     end
     # raise
+  end
 end
+
+
+
 
   def show
     @collection = Collection.find(params[:id])
     authorize @collection
     @booking = Booking.new
+    if user_signed_in? && !current_user.bookings.empty?
+      @existing_booking = current_user.bookings.where(collection_id: @collection.id).last
+      @review = Review.new
+    end
+
     if !@collection.reviews.empty?
       @average_rating = @collection.reviews.pluck(:rating).sum / @collection.reviews.length
     end
@@ -76,6 +90,6 @@ end
   end
 
   def collection_params
-    params.require(:collection).permit(:title, :description, :price, photos: [] )
+    params.require(:collection).permit(:title, :description, :address, :price, photos: [] )
   end
 end

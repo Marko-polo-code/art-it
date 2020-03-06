@@ -1,5 +1,5 @@
 class Collection < ApplicationRecord
-  
+
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   belongs_to :user
@@ -12,6 +12,14 @@ class Collection < ApplicationRecord
   validates :price, presence: true
 
   scope :favorited_by, ->(email) { joins(:favorites).where(favorites: { user: User.where(username: username)})}
+
+  include PgSearch::Model
+  pg_search_scope :search_by_title_and_address,
+    against: [ :title, :address ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   def unavailable_dates
     bookings.pluck(:start_date, :end_date).map do |range|
       { from: range[0], to: range[1] }

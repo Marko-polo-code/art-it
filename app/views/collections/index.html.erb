@@ -1,31 +1,32 @@
 
 <div class="home-banner">
   <h1 id="title">Art It</h1>
-  
+
   <h2 id="description-header">An Art Collection at your FingerTip</h2>
 </div>
 
 
 <br>
 
-  
+
 <div class="row">
   <div class="cards col-md-8 col-sm-12">
-  
-    
+
+
       <% @collections.each do |collection| %>
-        
+
         <% if collection.photos.attached? %>
 
       <div class="card-trip">
         <%= link_to new_favorite_path(collection_id: collection), method: :post, class: "fav-heart" do %>
-            <i class="far fa-heart"></i> 
+            <i class="far fa-heart"></i>
         <% end %>
          <%= cl_image_tag collection.photos[0].key, height: 300, width: 400, crop: :fill %>
         <div class="card-trip-infos">
          <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
           <div>
           <p><%= collection.description %><p>
+          <p><%= collection.address %></p>
           <br>
           <p id="price">$<%= collection.price %><p>
           </div>
@@ -35,10 +36,9 @@
 
     <% else %>
 
-    
       <div class="card-trip">
          <%= link_to new_favorite_path(collection_id: collection), method: :post, class:"fav-heart" do%>
-            <i class="far fa-heart"></i> 
+            <i class="far fa-heart"></i>
         <% end %>
         <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
         <div class="card-trip-infos">
@@ -52,8 +52,9 @@
         </div>
       <% end %>
      </div>
+    <% end %>
+  </div>
 
-        <% end %>
   <div class="col-md-4">
     <div id="map"
     style="width: 100%;
@@ -63,8 +64,7 @@
     </div>
   </div>
 </div>
-  </div>
-  
+
 
 <br>
 
@@ -102,7 +102,7 @@
 
 				<form action="#" method="post">
 
-					
+
 
 				</form>
 
