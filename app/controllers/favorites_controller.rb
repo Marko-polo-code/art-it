@@ -22,5 +22,13 @@ class FavoritesController < ApplicationController
 
     def index
       @favorites = Favorite.all
+      @markers = @favorites.map do |favorite|
+        {
+          lat: favorite.collection.latitude,
+          lng: favorite.collection.longitude,
+          # infoWindow: render_to_string(partial: "infowindow", locals: { collection: collection }),
+          image_url: "https://image.flaticon.com/icons/svg/54/54369.svg"
+        }
     end
   end
+end
