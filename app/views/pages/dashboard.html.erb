@@ -4,13 +4,13 @@
 
     <h2 id="collection">My Collection</h2>
 
-    <% @collections.each do |my_collection| %>
-
-
-
 <div class="row">
-   <div class="col-4 col-sm-2">
+    <% @collections.each do |my_collection| %>
+   <div class="col-md-4 col-sm-12">
      <div class=card-trip>
+
+
+
 
 
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -33,20 +33,8 @@
 
         </div>
       </div>
+<% end %>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <% end %>
 
 
 
@@ -55,46 +43,45 @@
 
     <br>
 
-<div class="row">
-   <div class="col-4 col-sm-2">
-
-
     <h3>Bookings</h3>
 
-  <div class="card-trip">
+  <div class="row">
 
+      <% @made_bookings.each do |booking| %>
+     <div class="col-md-4 col-sm-12">
+        <div class="card-trip">
 
-        <% @made_bookings.each do |booking| %>
+          <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
+          <div class="card-trip-infos">
 
-         <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
-        <div class="card-trip-infos">
+            <p id="title-two"><%= booking.collection.title %></p>
+            <p id="start">Start date:<br><%= booking.start_date %></p>
+            <p id="end">End date:<br><%= booking.end_date %></p>
 
-          <p id="title-two"><%= booking.collection.title %></p>
-          <p id="start">Start date:<br><%= booking.start_date %></p>
-          <p id="end">End date:<br><%= booking.end_date %></p>
+          </div>
+
           <% if booking.review.nil? %>
-        </div>
             <%= link_to "Review this booking", new_booking_review_path(booking), class: "btn btn-ghost"%>
           <% end %>
-        <% end %>
         </div>
-      </div>
     </div>
+      <% end %>
+  </div>
 
 
 
-
-
-
-<div class="row">
-   <div class="col-sm-4 col-sm-2">
 
 
     <h3>Received Bookings</h3>
-      <div class=card-trip>
+
+<div class="row">
+
 
 
         <% @received_bookings.each do |booking| %>
+   <div class="col-md-4 col-sm-2">
+      <div class=card-trip>
+
         <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
       <div class="card-trip-infos">
 
@@ -107,10 +94,10 @@
         <%= link_to 'accept', booking_accept_path(booking), class: "btn btn-ghost", method: :put %>
         <%= link_to 'reject', booking_reject_path(booking), class: "btn btn-ghost", method: :put %>
         <% end %>
-        <% end %>
-
       </div>
     </div>
+        <% end %>
+
   </div>
 
 
