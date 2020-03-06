@@ -1,59 +1,60 @@
 
 <div class="home-banner">
   <h1 id="title">Art It</h1>
-
   <h2 id="description-header">An Art Collection at your FingerTip</h2>
 </div>
 
-
 <br>
-
 
 <div class="row">
   <div class="cards col-md-8 col-sm-12">
-
-
-      <% @collections.each do |collection| %>
-
-        <% if collection.photos.attached? %>
-
-      <div class="card-trip">
-        <%= link_to new_favorite_path(collection_id: collection), method: :post, class: "fav-heart" do %>
-            <i class="far fa-heart"></i>
-        <% end %>
-         <%= cl_image_tag collection.photos[0].key, height: 300, width: 400, crop: :fill %>
-        <div class="card-trip-infos">
-         <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
-          <div>
-          <p><%= collection.description %><p>
-          <p><%= collection.address %></p>
-          <br>
-          <p id="price">$<%= collection.price %><p>
+    <% @collections.each do |collection| %>
+      <% if collection.photos.attached? %>
+        <div class="card-trip">
+          <%= link_to new_favorite_path(collection_id: collection), method: :post, class: "fav-heart" do %>
+              <i class="far fa-heart"></i>
+          <% end %>
+          <%= cl_image_tag collection.photos[0].key, height: 300, width: 400, crop: :fill %>
+          <div class="card-trip-infos">
+            <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
+            <div>
+              <p><%= collection.description %><p>
+              <p><%= collection.address %></p>
+              <br>
+              <p id="price">$<%= collection.price %><p>
+            </div>
+            <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
         </div>
-      </div>
 
-    <% else %>
+      <% else %>
 
-      <div class="card-trip">
-         <%= link_to new_favorite_path(collection_id: collection), method: :post, class:"fav-heart" do%>
-            <i class="far fa-heart"></i>
-        <% end %>
-        <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
-        <div class="card-trip-infos">
-        <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
-          <div>
-          <p><%= collection.description %><p>
-          <br>
-          <p id="price">$<%= collection.price %></p>
+        <div class="card-trip">
+          <%= link_to new_favorite_path(collection_id: collection), method: :post, class:"fav-heart" do%>
+              <i class="far fa-heart"></i>
+          <% end %>
+          <img src="https://source.unsplash.com/<%=rand(1400..1600) %>x900/?painting" />
+          <div class="card-trip-infos">
+            <p id="description"><%= link_to collection.title, collection_path(collection)%></p>
+              <div>
+                <p><%= collection.description %><p>
+                <br>
+                <p id="price">$<%= collection.price %></p>
+              </div>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key,  class: "card-trip-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png", class: "card-trip-user avatar-bordered" %>
+            <% end %>
           </div>
           <img src="https://kitt.lewagon.com/placeholder/users/marko-polo-code" class="card-trip-user avatar-bordered" />
         </div>
      </div>
       <% end %>
+       </div>
     <% end %>
-  </div>
+  <% end %>
+</div>
 
   <div class="col-md-4">
     <div id="map"
