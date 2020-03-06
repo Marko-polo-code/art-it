@@ -18,6 +18,8 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'geocoder'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -30,6 +32,5 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
-  gem 'geocoder'
 
 end
