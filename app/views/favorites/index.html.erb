@@ -47,7 +47,11 @@
           <br>
           <p id="price">$<%= favorite.collection.price %></p>
           </div>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key,  class: "card-trip-user avatar-bordered" %>
+            <% else %>
+              <%= image_tag "https://iupac.org/wp-content/uploads/2018/05/default-avatar.png", class: "card-trip-user avatar-bordered" %>
+            <% end %>
         </div>
      </div>
   <% end %>

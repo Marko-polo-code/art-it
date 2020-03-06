@@ -17,11 +17,11 @@
 }
 
 .back-blue {
-  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), #88827E;
+  background: #BA3B46;
 }
 
 .navbar-lewagonsolid {
-  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), #88827E;
+  background: #BA3B46;
 
 }
 
@@ -47,6 +47,7 @@ body {
   border: none;
   border-bottom: 2px solid white;
   background-color: transparent;
+  color: white;
 }
 #search-bar:focus {
   border-bottom: 1px solid teal;
