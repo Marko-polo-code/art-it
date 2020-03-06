@@ -1,41 +1,84 @@
-
-<div class="container" style="margin-top: 9rem">
-
-  <%= link_to "Home Page", collections_path %>
-
-    <div class="row">
-
-      <div class="col-md-6">
-         <div class="card horizontal">
-           <h2 class="header"><%= @collection.title %></h2>
-            <div class="card-image">
-            </div>
-            <div class="card-stacked">
-              <div class="card-content">
-                <p><%= @collection.description %></p>
-                <p><%= @collection.price %></p>
-                <p><%= @collection.address %></p>
-                <% if @average_rating %>
-                  <% @average_rating.times do  %>
-                    <i class="fas fa-star" style="color: yellow"></i>
-                  <% end %>
-                <% else %>
-                  No ratings yet.
-                <% end %>
-               </div>
-               <div class="card-action">
-               </div>
-              </div>
-            </div>
-          </div>
-        <% @collection.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<div class="row">
+  <div class="col-6">
+    <% if @collection.photos.attached? %>
+      <%= cl_image_tag @collection.photos[0].key, crop: :fill, width: 638, height: 370 %>
+    <% else %>
+      <img src="https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" width="638" height="370" alt="">
+    <% end %>
+  </div>
+  <div class="col-6">
+    <div class="row" style="margin-top: 0; padding: 0; background: none">
+      <% if @collection.photos.attached? %>
+        <% @collection.photos[1..-1].each do |photo| %>
+          <div class="col-6"><%=cl_image_tag photo.key, crop: :fill, width: 318, height: 185 %></div>
         <% end %>
+      <% else %>
+      <div class="col-6">
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2645&q=80" width="318" height="185" alt="">
+      </div>
+      <div class="col-6">
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2645&q=80" width="318" height="185" alt="">
+      </div>
+      <div class="col-6">
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2645&q=80" width="318" height="185" alt="">
+      </div>
+      <div class="col-6">
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2645&q=80" width="318" height="185" alt="">
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
 
 
-      <div class="col-md-6">
-      <h3 class="booking-question">Do you like it? Make a booking</h3>
-        <div id='flat-booking-dates' data-unavailable="<%= @collection.unavailable_dates.to_json %>">
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="d-flex border-bottom justify-content-between">
+        <div>
+          <h2 class="header"><%= @collection.title %></h2>
+          <h5 class="header"><%= @collection.address.split(" ")[3] %></h5>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <% if @collection.user.photo.attached? %>
+            <%=cl_image_tag @collection.user.photo.key, crop: :fill, width: 638, height: 370, class: "avatar" %>
+          <% else %>
+            <i class="fas fa-user" style="font-size: 30px"></i>
+          <% end %>
+          <%= @collection.user.email %>
+        </div>
+      </div>
+      <div><p><%= @collection.description %></p></div>
+      <div>
+        <% if @collection.reviews.blank? %>
+          Be the first to leave a review for <%= @collection.title %>
+        <% else %>
+          <% @collection.reviews.each do |review| %>
+            <div class="card-product">
+              <div class="d-flex">
+                <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" class="avatar" />
+                <div class="ml-3">
+                  <p class="mb-0"><%= review.booking.user.email %></p>
+                  <p class="mb-0"><%= review.created_at.strftime("%B %Y") %></p>
+                </div>
+              </div>
+              <div class="card-product-infos">
+                <h5><%= review.title %></h5>
+                  <p><%= review.content %></p>
+                  <% review.rating.times do  %>
+                  <i class="fas fa-star" style="color: yellow"></i>
+                  <% end %>
+              </div>
+              <hr>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="col-4">
+      <div id='flat-booking-dates' data-unavailable="<%= @collection.unavailable_dates.to_json %>">
           <% if current_user && current_user.id != @collection.user_id  %>
           <%= simple_form_for [ @collection, @booking ] do |f| %>
               <%= f.input :start_date, as: :string, type: :text %>
@@ -44,37 +87,17 @@
             <% end %>
           <% end %>
         </div>
-      </div>
+    </div>
 
-      </div>
-
-
-    <div id="reviews">
+    <div class="col-8">
       <% if user_signed_in? && !current_user.bookings.empty? && @existing_booking %>
         <%= render 'reviews/form', {booking: @existing_booking, review: @review} %>
       <% end %>
-      <% if @collection.reviews.blank? %>
-        Be the first to leave a review for <%= @collection.title %>
-      <% else %>
-        <% @collection.reviews.each do |review| %>
-          <div class="card-product">
-            <img src="https://iupac.org/wp-content/uploads/2018/05/default-avatar.png" />
-            <div class="card-product-infos">
-              <h2><%= review.title %></h2>
-                <p><%= review.content %></p>
-                <% review.rating.times do  %>
-                <i class="fas fa-star" style="color: yellow"></i>
-                <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
-
-
-
   </div>
 </div>
+
+
 
 
 
