@@ -51,6 +51,9 @@
 
 
     <div id="reviews">
+      <% if user_signed_in? && !current_user.bookings.empty? && @existing_booking %>
+        <%= render 'reviews/form', {booking: @existing_booking, review: @review} %>
+      <% end %>
       <% if @collection.reviews.blank? %>
         Be the first to leave a review for <%= @collection.title %>
       <% else %>

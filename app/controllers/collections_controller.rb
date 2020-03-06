@@ -25,6 +25,11 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     authorize @collection
     @booking = Booking.new
+    if user_signed_in? && !current_user.bookings.empty?
+      @existing_booking = current_user.bookings.where(collection_id: @collection.id).last
+      @review = Review.new
+    end
+
     if !@collection.reviews.empty?
       @average_rating = @collection.reviews.pluck(:rating).sum / @collection.reviews.length
     end
