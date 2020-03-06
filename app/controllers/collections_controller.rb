@@ -17,13 +17,12 @@ class CollectionsController < ApplicationController
       }
     end
     @collections = policy_scope(Collection)
-    
+
     if params[:q]
       @collections = Collection.where("title ILIKE ?", "%" + params[:q] + "%")
     end
     # raise
   end
-end
 
 
 
