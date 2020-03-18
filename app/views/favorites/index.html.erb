@@ -14,12 +14,12 @@
          <%= cl_image_tag favorite.collection.photos[0].key, height: 300, width: 400, crop: :fill %>
             <div class="card-trip-infos">
               <p id="description"><%=link_to favorite.collection.title, collection_path(favorite.collection)%></p>
-            <%= link_to collection_favorite_path(favorite.collection, favorite),
-            method: :delete,
-            data: { confirm: "This Collection will be removed from the favorites" } do %>
-            <i class="fas fa-heart"></i>
-            <% end %>
-          <div>
+                <%= link_to collection_favorite_path(favorite.collection, favorite),
+                method: :delete,
+                data: { confirm: "This Collection will be removed from the favorites" } do %>
+                <i class="fas fa-heart"></i>
+                <% end %>
+            <div>
             <p><%= favorite.collection.description %><p>
             <br>
             <p id="price">$<%= favorite.collection.price %></p>
